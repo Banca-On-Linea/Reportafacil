@@ -181,6 +181,11 @@ li {
     vertical-align: middle;
 }
 
+::placeholder {
+    color:#CACACA;
+    padding-left: 10px;
+  }
+
 .topBar{
     height: 90px;
     width: 100%;
